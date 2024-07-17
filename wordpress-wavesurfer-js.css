@@ -1,0 +1,413 @@
+/* Audio Player */
+
+.music-single-container {
+
+}
+.music-single-desc {
+	margin: 0 auto;
+	max-width: 1600px;
+	padding: 2%;
+}
+
+.audio-player-container {
+ 	display: grid;
+	gap: 0;
+	grid-template-areas:
+	"play-track-name play-track-name volume-group cover"
+	"wave wave wave cover"
+	"currentTime currentTime totalDuration cover";
+	grid-template-rows: repeat(3, auto);
+	grid-template-columns: repeat(4, 1fr);
+	column-gap:  2%;
+	row-gap:  0;
+	justify-items: stretch;
+	align-items: start;
+	justify-content: space-evenly;
+	align-content: space-evenly;
+	padding: 2%;
+	margin: 0 auto;
+	max-width: 1920px;
+	background: linear-gradient(#eee, #fff);
+}
+
+.audio-player-container-wraper {
+	background: linear-gradient(#eee, #fff);
+}
+
+.music-single-cover, .music-single-cover:hover {
+	grid-area: cover;
+	width: 100%;
+	border: 0;
+}
+
+.music-single-cover img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1 / 1;
+	box-shadow: var(--shadow-elevation-medium);
+}
+
+.play-track-name {
+	grid-area: play-track-name;
+	display: grid;
+	gap: 0;
+	grid-template-areas:
+	"play-pause track-name"
+	"play-pause track-name"
+	"play-pause music-style";
+	grid-template-rows: repeat(3, auto);
+	grid-template-columns: 80px auto;
+	column-gap:  2%;
+	row-gap:  0;
+	align-self : center;
+}
+
+.play-track-name h1, .play-track-name .music-style {
+	margin: 8px 0;
+	padding: 0;
+	line-height: 1.3;
+}
+
+.track-name {
+	grid-area: track-name;
+	text-align: start;
+	align-self : end;
+
+}
+
+.music-style {
+	grid-area: music-style;
+}
+
+.play-button {
+	grid-area: play-pause;
+	align-self : center;	
+	width: 80px;
+	height: 80px;
+	padding: 20px;
+}
+
+
+#loading_flag {
+	padding: 25px 0;
+	text-align: center;
+	background: url(../img/icons/waveform-thin.svg) center center;
+	color: var(--accent-color);
+	font-weight: bold;
+	display: none;
+}
+
+#waveform {
+	height: 120px;
+}
+
+.play-button-icon, .volume-icon {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1 / 1;
+}
+
+.play-button, .volume-button {
+	background: var(--accent-color);
+	line-height: 0;
+	margin: 0;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: 0.2s linear;
+}
+
+.play-button:hover, .volume-button:hover {
+	background: #3300cc;
+	transform: scale(1.1);
+}
+
+.volume-group {
+	grid-area: volume-group;
+	display: grid;
+	gap: 0;
+	grid-template-areas:
+	"volume-button volume-slider";
+	grid-template-rows: repeat(1, auto);
+	grid-template-columns: repeat(2, auto);
+	column-gap:  20px;
+	row-gap:  0;
+	justify-items: stretch;
+	align-items: start;
+	justify-content: space-evenly;
+	align-content: space-evenly;
+	align-self : center;
+	justify-self: end;
+}
+
+.volume-button {
+	grid-area: volume-button;
+	align-self : center;
+	width: 40px;
+	height: 40px;
+	padding: 8px;
+}
+
+.volume-slider {
+	grid-area: volume-slider;
+	align-self : center;	
+}
+#currentTime {
+	grid-area: currentTime;
+	color: #999;
+}
+
+#totalDuration {
+	grid-area: totalDuration;
+	justify-self: end;
+	color: #999;
+}
+
+#waveform {
+	grid-area: wave;
+	align-self : end;
+	padding: 20px 0;
+	border-radius: 8px;
+
+}
+
+wave{
+	overflow-x: hidden!important;
+	border: 0!important;
+	cursor: pointer!important;
+}
+
+@media only screen and (max-width: 940px) {
+	.audio-player-container {
+		padding: 8vw 4vw;
+		display: grid;
+		gap: 0;
+		grid-template-areas:
+		"cover cover cover cover"
+		"play-track-name play-track-name play-track-name play-track-name"
+		"wave wave wave wave"
+		"currentTime volume-group volume-group totalDuration";
+		grid-template-rows: repeat(4, auto);
+		grid-template-columns: repeat(4, 1fr);
+		column-gap:  2%;
+		row-gap:  2%;
+		justify-items: stretch;
+		align-items: start;
+		justify-content: space-evenly;
+		align-content: space-evenly;
+	}
+
+	#currentTime, #totalDuration {
+		align-self : center;
+		font-size: 0.8em;
+	}
+
+	.volume-group {
+		column-gap: 2vw;
+		justify-self: center;
+		padding: 20px 0;
+	}
+
+	.music-single-desc {
+		padding: 4%;
+	}
+
+	.play-track-name {
+		column-gap:  2vw;
+	}
+
+	.play-track-name h1 {
+		font-size: 1.2em;
+	}
+
+	#waveform {
+	margin-left: -4vw;
+	margin-right: -4vw;
+	}
+
+	.play-track-name .music-style {
+		line-height: 1.9;
+	}
+}
+
+/* Input Range */
+
+input[type=range] {
+  width: 100%;
+  margin: 7.6px 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  background: rgba(153, 153, 255, 0.78);
+  border: 0;
+  border-radius: 25px;
+  width: 100%;
+  height: 4.8px;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  margin-top: -7.6px;
+  width: 20px;
+  height: 20px;
+  background: var(--accent-color);
+  border: 0;
+  border-radius: 11px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #9e9eff;
+}
+input[type=range]::-moz-range-track {
+  background: rgba(153, 153, 255, 0.78);
+  border: 0;
+  border-radius: 25px;
+  width: 100%;
+  height: 4.8px;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--accent-color);
+  border: 0;
+  border-radius: 11px;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  border-width: 8.5px 0;
+  color: transparent;
+  width: 100%;
+  height: 4.8px;
+  cursor: pointer;
+}
+input[type=range]::-ms-fill-lower {
+  background: #9494ff;
+  border: 0;
+  border-radius: 50px;
+}
+input[type=range]::-ms-fill-upper {
+  background: rgba(153, 153, 255, 0.78);
+  border: 0;
+  border-radius: 50px;
+}
+input[type=range]::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--accent-color);
+  border: 0;
+  border-radius: 11px;
+  cursor: pointer;
+  margin-top: 0px;
+  /*Needed to keep the Edge thumb centred*/
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: rgba(153, 153, 255, 0.78);
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #9e9eff;
+}
+/*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+how to remove the virtical space around the range input in IE*/
+@supports (-ms-ime-align:auto) {
+  /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+  input[type=range] {
+    margin: 0;
+    /*Edge starts the margin from the thumb, not the track as other browsers do*/
+  }
+}
+
+/* Input Range */
+.buy-streaming-wraper {
+	background: #f5f5f5;
+}
+.buy-streaming-container {
+	margin: 0 auto;
+	padding: 1vw 2vw;
+	max-width: 1600px;
+	display: grid;
+	gap: 0;
+	grid-template-areas:
+	"buy streaming-link";
+	grid-template-rows: repeat(1, auto);
+	grid-template-columns: repeat(2, 1fr);
+	column-gap:  20px;
+	row-gap:  0;
+	justify-items: stretch;
+	align-items: start;
+	justify-content: space-evenly;
+	align-content: space-evenly;
+}
+
+.streaming {
+	grid-area: streaming-link;
+	line-height: 0;
+	align-self : center;
+}
+.streaming-link {
+	width: 28px;
+	display: none;
+	border: 0;
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+	-moz-opacity: 0.60;
+	-khtml-opacity: 0.60;
+	/* opacity: 0.60; */
+}
+.streaming-link:after {
+	content: ''!important;
+}
+.streaming-link:hover {
+	border: 0;
+}
+.streaming-link img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1 / 1;
+	line-height: 0;
+}
+.buy {
+	grid-area: buy;
+}
+.buy svg {
+	width: 22px;
+	vertical-align: text-bottom;
+}
+.buy .button, .buy .wp-block-button__link {
+	margin: 0;
+}
+
+
+@media only screen and (max-width: 940px) {
+	.buy-streaming-container {
+		margin: 0 auto;
+		padding: 4vw;
+		display: grid;
+		gap: 0;
+		grid-template-areas:
+		"buy"
+		"streaming-link";
+		grid-template-rows: repeat(2, auto);
+		grid-template-columns: repeat(1, 1fr);
+		column-gap:  20px;
+		row-gap:  4vw;
+		justify-items: stretch;
+		align-items: start;
+		justify-content: space-evenly;
+		align-content: space-evenly;
+	}
+	.buy .button, .buy .wp-block-button__link {
+		width: 100%;
+	}
+	.streaming {
+		justify-self: center;
+	}
+	.streaming-link {
+		width: 28px;
+	}
+}
+/* Audio Player */
